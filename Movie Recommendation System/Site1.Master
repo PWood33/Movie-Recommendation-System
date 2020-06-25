@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Movie_Recommendation_System.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            height: 345px;
+        }
+        .auto-style2 {
+            width: 100%;
+            height: 199px;
+        }
+        .auto-style3 {
+            height: 71px;
+            background-color:#2F4454;
+        }
+        .auto-style4 {
+            height: 66px;
+            background-color: grey;
+        }
+        .auto-style5 {
+            height: 71px;
+            width: 688px;
+            background-color:#2F4454;
+        }
+        .auto-style6 {
+            height: 88px;
+            text-align: center;
+            background-color:gray;
+        }
+        </style>
+    <link rel="stylesheet" type="text/css" href="StyleSheetMain.css" />
+</head>
+<body style="height: 261px">
+    <form id="form1" runat="server" class="auto-style1">
+
+        <table class="auto-style2">
+            <tr>
+                <td class="auto-style5">
+                    <asp:Label ID="Label1" runat="server" ForeColor="White" Text="MovieStar" Font-Size="X-Large"></asp:Label>
+                </td>
+                <td class="auto-style3">
+                    <asp:LinkButton ID="LinkButton1" runat="server" Font-Size="X-Large" ForeColor="White" OnClick="LinkButton1_Click">Downloads</asp:LinkButton>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6" colspan="2">
+                    <asp:Menu ID="Menu1" Orientation="Horizontal" runat="server">
+                        <StaticMenuStyle CssClass="MenuStyle" HorizontalPadding="20px"/>
+                        <StaticMenuItemStyle Font-Size="Medium" HorizontalPadding="50px" VerticalPadding="2px" />
+                        <StaticHoverStyle Font-Bold="true" BackColor="#666666" ForeColor="White" />
+                        <StaticSelectedStyle BackColor="#1C5E55" />
+
+                        <DynamicMenuStyle CssClass="MenuStyle" BackColor="#E3EAEB"/>
+                        <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                        <DynamicHoverStyle Font-Bold="true" BackColor="#666666" ForeColor="White" />
+                        <DynamicSelectedStyle BackColor="#1C5E55" />
+
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/MainPage.aspx" Text="Home" Value="Home"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AllMovies.aspx" Text="Movies" Value="Movies"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Recommendations.aspx" Text="Recommendations" Value="Recommendations">
+                                <asp:MenuItem NavigateUrl="~/TopGenres.aspx" Text="Genre Recommendations" Value="Genre Recommendations"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Logout" Value="Logout"></asp:MenuItem>
+                        </Items>
+                       
+                    </asp:Menu>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style4" colspan="2">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        <p>
+                            <br />
+                        </p>
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

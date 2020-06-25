@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="pw3649f" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=sql-server;Initial Catalog=pw3649f;User ID=pw3649f" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="pw3649fConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.adminmanagement" Member="adminmanagements">
+    <Type Name="adminmanagement">
+      <Column Name="AdminID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AdminFirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminEmail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminPassword" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.category" Member="categories">
+    <Type Name="category">
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GenreID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryTitle" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="category_movy" Member="movies" ThisKey="CategoryID" OtherKey="CategoryID" Type="movy" />
+      <Association Name="genre_category" Member="genre" ThisKey="GenreID" OtherKey="GenreID" Type="genre" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.download" Member="downloads">
+    <Type Name="download">
+      <Column Name="DownloadID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DownloadDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MovieID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="userregister_download" Member="userregister" ThisKey="RegistrationID" OtherKey="RegistrationID" Type="userregister" IsForeignKey="true" />
+      <Association Name="movy_download" Member="movy" ThisKey="MovieID" OtherKey="MovieID" Type="movy" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.genre" Member="genres">
+    <Type Name="genre">
+      <Column Name="GenreID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GenreName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GenreDescription" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="genre_category" Member="categories" ThisKey="GenreID" OtherKey="GenreID" Type="category" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userfeedback" Member="userfeedbacks">
+    <Type Name="userfeedback">
+      <Column Name="ReviewID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MovieID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ratings" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserReviews" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="userregister_userfeedback" Member="userregister" ThisKey="RegistrationID" OtherKey="RegistrationID" Type="userregister" IsForeignKey="true" />
+      <Association Name="movy_userfeedback" Member="movy" ThisKey="MovieID" OtherKey="MovieID" Type="movy" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userregister" Member="userregisters">
+    <Type Name="userregister">
+      <Column Name="RegistrationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Telephone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="userregister_download" Member="downloads" ThisKey="RegistrationID" OtherKey="RegistrationID" Type="download" />
+      <Association Name="userregister_userfeedback" Member="userfeedbacks" ThisKey="RegistrationID" OtherKey="RegistrationID" Type="userfeedback" />
+    </Type>
+  </Table>
+  <Table Name="dbo.movies" Member="movies">
+    <Type Name="movy">
+      <Column Name="MovieID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GenreID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MovieTitle" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MovieDescription" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MovieImage" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Tags" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="movy_download" Member="downloads" ThisKey="MovieID" OtherKey="MovieID" Type="download" />
+      <Association Name="movy_userfeedback" Member="userfeedbacks" ThisKey="MovieID" OtherKey="MovieID" Type="userfeedback" />
+      <Association Name="category_movy" Member="category" ThisKey="CategoryID" OtherKey="CategoryID" Type="category" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

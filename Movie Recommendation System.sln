@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie Recommendation System", "Movie Recommendation System\Movie Recommendation System.csproj", "{2C5CEA28-F98A-4BCC-A41F-95E549BC1736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListMethods", "ListMethods\ListMethods.csproj", "{FB09DC37-472E-4051-A363-B1E300A9959C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C5CEA28-F98A-4BCC-A41F-95E549BC1736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5CEA28-F98A-4BCC-A41F-95E549BC1736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5CEA28-F98A-4BCC-A41F-95E549BC1736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5CEA28-F98A-4BCC-A41F-95E549BC1736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB09DC37-472E-4051-A363-B1E300A9959C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB09DC37-472E-4051-A363-B1E300A9959C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB09DC37-472E-4051-A363-B1E300A9959C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB09DC37-472E-4051-A363-B1E300A9959C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7654485-4513-4CAC-8ADA-DF59DC6DF00B}
+	EndGlobalSection
+EndGlobal
