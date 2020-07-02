@@ -107,6 +107,7 @@
     <Compile Include="AllMovies.aspx.designer.cs">
       <DependentUpon>AllMovies.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DummyReviewData.cs" />
     <Compile Include="Genreclass.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="DataClasses1.designer.cs">

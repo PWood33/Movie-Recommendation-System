@@ -8,59 +8,77 @@ namespace Movie_Recommendation_System
 {
     public class PearsonCorrelation
     {
-        private ArrayList collection = new ArrayList();
-        //what the algorithm does
-        // finds the reviews that reviewed both products. 
-        //it then computes the sums of the ratings and the squared sums of the ratings for the two products
-        //and computes the sum of the reviews of the products.
-        //Finally it uses these results to compute the PC score.
+        // copied straight from http://www.codeinthezone.com/find-and-rank-similar-entities-c-sharp-with-pearson-correlation/
+        // Will show up as plagerism
 
-        public void CalculatePearsonScore()
+
+        public DummyReviewData testData = new DummyReviewData();
+
+        public double FromOnlineGetPearsonCorrelation(Dictionary<string, Dictionary<string, double>> preferences, string entity1, string entity2)
         {
-            GetCommonReviews();
-            SumOfPref();
-            SumOfSquared();
-            SumOfProduct();
-            SortInDescending();
-            PearsonScore();
+            // exception checking
+            if (preferences == null)
+            {
+                throw new ArgumentNullException("preferences");
+            }
 
+            if (entity1 == null)
+            {
+                throw new ArgumentNullException("entity1");
+            }
+
+            if (entity2 == null)
+            {
+                throw new ArgumentNullException("entity2");
+            }
+
+            if (!preferences.ContainsKey(entity1) || !preferences.ContainsKey(entity2))
+            {
+                return 0;
+            }
+
+            var similarities = GetCommonItems(preferences, entity1, entity2).ToArray();
+            if (!similarities.Any())
+            {
+                return 0;
+            }
+
+
+            var similaritiesCount = similarities.Count();
+
+            // Add up all the preferences
+            var sum1 = similarities.Select(sim => preferences[entity1][sim.ToString()]).Sum();
+            var sum2 = similarities.Select(sim => preferences[entity2][sim.ToString()]).Sum();
+
+
+            // Sum up the squares
+            var sumOfSquares1 = similarities.Select(sim => Math.Pow(preferences[entity1][sim.ToString()], 2)).Sum();
+            var sumOfSquares2 = similarities.Select(sim => Math.Pow(preferences[entity2][sim.ToString()], 2)).Sum();
+
+
+            // Sum up the products
+            var sumOfProducts = similarities.Select(sim => preferences[entity1][sim.ToString()] * preferences[entity2][sim.ToString()]).Sum();
+
+            // Calculate Pearson Correlation Coefficient
+            var numerator = sumOfProducts - (sum1 * sum2) / similaritiesCount;
+            var denominator =
+                Math.Sqrt((sumOfSquares1 - Math.Pow(sum1, 2) / similaritiesCount) *
+                          (sumOfSquares2 - Math.Pow(sum2, 2) / similaritiesCount));
+
+            if (denominator == 0)
+            {
+                return 0;
+            }
+
+            return numerator / denominator;
         }
 
-        //Collect list of products which have reviews in common
-        public void GetCommonReviews()
+        private string GetCommonItems(IReadOnlyDictionary<string, Dictionary<string, double>> preferences, string entity1, string entity2)
         {
-            foreach (var item in collection)
-	        {
-                
-	        }
+            return (preferences[entity1].Where(pref => preferences[entity2].ContainsKey(pref.Key)).Select(pair => pair.Key)).ToString();
         }
 
-       //Get the sum of all the preferences
-       public void SumOfPref()
-       {
-
-       }
-
-       //get sum of squared preferences
-       public void SumOfSquared()
-        {
-
-        }
-
-       public void SumOfProduct()
-       {
-
-       }
-
-       public void PearsonScore()
-        {
-
-        }
-
-        public void SortInDescending()
-        {
-
-        }
+        
 
         
     }
