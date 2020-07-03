@@ -14,31 +14,34 @@ namespace Movie_Recommendation_System
         {
             if (!IsPostBack)
             {
-                DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("MovieRatings"), new DataColumn("MovieTitle") });
-                dt.Rows.Add(2, "IT");
-                dt.Rows.Add(3, "Avengers EndGame");
-                dt.Rows.Add(10, "Ant-man");
-                dt.Rows.Add(11, "Hangover");
-                dt.Rows.Add(12, "Inbetweeners");
-                GridViewRec.DataSource = dt;
+            
+
+        //        public PearsonCorrelation pcCalculator = new PearsonCorrelation();
+        //// For the coeffieffient score
+        //public double = pcCalculator.FromOnlineGetPearsonCorrelation(pcCalculator.testData.pref);
+
+        //// For matches
+        //public Dictionary sorted = pcCalculator.TopMatches(preferences, entity, limit, pcCalculator.FromOnlineGetPearsonCorrelation(PearsonCorrelation.testData.pref));
+
+
+        ////DataTable dt = new DataTable();
+        //dt.Columns.AddRange(new DataColumn[2] { new DataColumn("MovieRatings"), new DataColumn("MovieTitle") });
+        //dt.Rows.Add(2, "IT");
+        //dt.Rows.Add(3, "Avengers EndGame");
+        //dt.Rows.Add(10, "Ant-man");
+        //dt.Rows.Add(11, "Hangover");
+        //dt.Rows.Add(12, "Inbetweeners");
+        GridViewRec.DataSource = dt;
                 GridViewRec.DataBind();
             }
         }
-    
+
 
         protected void GridViewRec_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
-            {
-                if (e.Row.Cells[0].Text == "five")
-                {
-                    e.Row.Cells[0].Text = "five";
-                }
-            }
-        }
+{ }  
+    
 
-        protected void GridViewRec_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void GridViewRec_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "MovieTitle")
             {
