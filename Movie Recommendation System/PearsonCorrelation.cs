@@ -78,8 +78,41 @@ namespace Movie_Recommendation_System
             return (preferences[entity1].Where(pref => preferences[entity2].ContainsKey(pref.Key)).Select(pair => pair.Key)).ToString();
         }
 
-        
+        public SortedDictionary<double, string> TopMatches(Dictionary<string, Dictionary<string, double>> preferences, string entity,
+        int limit, Func<Dictionary<string, Dictionary<string, double>>, string, string, double> metricFunc)
+        {
+            var result = new SortedDictionary<double, string>(new DescendingCompare<double>());
+            foreach (var currentEntity in preferences.Select(currentEntityItems => currentEntityItems.Key).Where(currentEntity => !currentEntity.Equals(entity)).Where(currentEntity => result.Count < limit))
+            {
+                result.Add(metricFunc(preferences, entity, currentEntity), currentEntity);
+            }
+            return result;
+        }
 
-        
+
+
+        // How to use 
+        // Paste in the section you want to use it in
+        // public PearsonCorrelation pcCalculator = new PearsonCorrelation();
+        //
+        // For the coeffieffient score
+        // public double = pcCalculator.FromOnlineGetPearsonCorrelation(pcCalculator.testData.pref);
+        //
+        //
+        // For matches
+        // public Dictionary sorted = pcCalculator.TopMatches(preferences, entity, limit, pcCalculator.FromOnlineGetPearsonCorrelation(PearsonCorrelation.testData.pref));
+
+
+
+
     }
+
+    // extra class which overrides the compare function from dictionary comparion
+    public class DescendingCompare<T> : Comparer<T> where T : IComparable<T>
+        {
+            public override int Compare(T x, T y)
+            {
+                return y == null ? 1 : y.CompareTo(x);
+            }
+        }
 }
