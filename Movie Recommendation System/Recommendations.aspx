@@ -20,9 +20,6 @@
             <Columns>
                 <asp:BoundField DataField="MovieRatings" HeaderText="MovieRatings" />
                 <asp:TemplateField HeaderText="MovieTitle">
-                    <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("[MovieTitle]") %>' CommandArgument='<%# Eval("MovieRatings")%>' CommandName="MovieTitle" ></asp:LinkButton>
-                </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
