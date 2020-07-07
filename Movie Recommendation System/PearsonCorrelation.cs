@@ -14,6 +14,11 @@ namespace Movie_Recommendation_System
 
         public DummyReviewData testData = new DummyReviewData();
 
+        public double TestResult()
+        {
+            return FromOnlineGetPearsonCorrelation(testData.preferences(), "Mick LaSalle", "Jack Matthews");
+        }
+
         public double FromOnlineGetPearsonCorrelation(Dictionary<string, Dictionary<string, double>> preferences, string entity1, string entity2)
         {
             // exception checking
